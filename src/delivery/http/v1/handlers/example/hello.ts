@@ -1,5 +1,5 @@
-import { Request,  Response } from 'express';
 import { DeliveryParams } from '@/delivery/types';
+import { Request, Response } from 'express';
 
 type Params = Pick<DeliveryParams, 'example'>;
 

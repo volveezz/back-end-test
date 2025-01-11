@@ -9,7 +9,7 @@ export const newClient = () => {
     },
   })
 
-  const getContextClient = (tx?: unknown)=>{
+  const getContextClient = (tx?: unknown) => {
     if (tx instanceof PrismaClient) {
       return tx
     }

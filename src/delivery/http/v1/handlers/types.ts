@@ -1,4 +1,4 @@
-import Express from 'express'
+import Express from 'express';
 
 export interface IHandler {
   registerRoutes: (root: Express.Router) => void

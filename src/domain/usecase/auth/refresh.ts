@@ -1,8 +1,8 @@
+import { IUser } from '@/domain/entity/user';
+import { NotFoundError } from '@/domain/errors';
 import { verifyJWT } from '@/lib';
 import { JwtPayload } from 'jsonwebtoken';
 import { UseCaseParams } from '../types';
-import { IUser } from '@/domain/entity/user';
-import { NotFoundError } from '@/domain/errors';
 
 export type Refresh = (data: {
   refreshToken: string
@@ -12,8 +12,8 @@ export type Refresh = (data: {
   refreshToken: string
 } | never>
 
-export const buildRefresh = ({ service, adapter }: UseCaseParams): Refresh=>{
-  return async ({ refreshToken })=>{
+export const buildRefresh = ({ service, adapter }: UseCaseParams): Refresh => {
+  return async ({ refreshToken }) => {
     const user = verifyJWT(refreshToken) as JwtPayload
 
     if (!user || !user.id) {
@@ -34,7 +34,7 @@ export const buildRefresh = ({ service, adapter }: UseCaseParams): Refresh=>{
       }
     })
 
-    if(!dbUser) {
+    if (!dbUser) {
       throw new NotFoundError({
         code: 'USER_NOT_FOUND'
       });

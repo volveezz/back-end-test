@@ -1,6 +1,6 @@
+import { verifyJWT } from '@/lib';
 import { RequestHandler } from 'express';
 import httpStatus from 'http-status';
-import { verifyJWT } from '@/lib';
 import { JwtPayload } from 'jsonwebtoken';
 
 export const authRequired = ({ required = true } = {}): RequestHandler => (

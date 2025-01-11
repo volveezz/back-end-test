@@ -7,7 +7,7 @@ export type AuthService = {
   signAuthTokens: signAuthTokens;
 }
 
-export const buildAuthService = (params: Adapter): AuthService =>{
+export const buildAuthService = (params: Adapter): AuthService => {
   const checkCredentials = buildCheckCredentials(params)
   const signAuthTokens = buildSignAuthTokens()
 

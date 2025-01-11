@@ -16,7 +16,7 @@ export type UserRepository = {
   list: List,
   update: Update,
 }
-export const buildUserRepository = (params: Params): UserRepository=>{
+export const buildUserRepository = (params: Params): UserRepository => {
   const count = buildCount(params)
   const create = buildCreate(params)
   const deleteUser = buildDelete(params)

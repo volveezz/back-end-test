@@ -1,12 +1,12 @@
-import Express from 'express';
-import { buildGetMe, GetMe } from './me';
-import { Refresh, buildRefresh } from './refresh';
-import { Authorize, buildAuthorize } from './authorize';
-import { Register, buildRegister } from './register';
 import { DeliveryParams } from '@/delivery/types';
-import { authorizationRules, getMeRules, refreshRules } from './rules';
+import Express from 'express';
 import { createRouteHandler } from '../../routeHandler';
 import { IHandler } from '../types';
+import { Authorize, buildAuthorize } from './authorize';
+import { GetMe, buildGetMe } from './me';
+import { Refresh, buildRefresh } from './refresh';
+import { Register, buildRegister } from './register';
+import { authorizationRules, getMeRules, refreshRules } from './rules';
 
 type Params = Pick<DeliveryParams, 'auth'>;
 

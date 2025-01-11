@@ -1,5 +1,5 @@
-import Express from 'express';
 import { config } from '@/config/index';
+import Express from 'express';
 
 const buildStart = (app: Express.Express) => {
   return (router: Express.Router) => {

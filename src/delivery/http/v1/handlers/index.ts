@@ -1,8 +1,8 @@
-import Express from 'express'
-import { IHandler } from './types'
 import { DeliveryParams } from '@/delivery/types'
-import { buildExampleHandler } from './example'
+import Express from 'express'
 import { buildAuthHandler } from './auth'
+import { buildExampleHandler } from './example'
+import { IHandler } from './types'
 
 export const buildHandler = (params: DeliveryParams): Express.Router => {
   const router = Express.Router()

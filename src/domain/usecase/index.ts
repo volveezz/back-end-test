@@ -1,5 +1,5 @@
 import { AuthUseCase, buildAuthUseCase } from './auth';
-import { buildExampleUseCase, ExampleUseCase } from './example'
+import { buildExampleUseCase, ExampleUseCase } from './example';
 import { UseCaseParams } from './types';
 
 export type UseCase = {

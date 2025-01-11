@@ -1,7 +1,7 @@
 import { IUser } from '@/domain/entity/user';
-import { UseCaseParams } from '../types';
-import * as bcrypt from 'bcrypt';
 import { InternalError, InvalidDataError } from '@/domain/errors';
+import * as bcrypt from 'bcrypt';
+import { UseCaseParams } from '../types';
 
 export type Register = (params: {
   email: string;

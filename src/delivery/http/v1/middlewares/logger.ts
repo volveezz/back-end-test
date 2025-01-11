@@ -1,5 +1,5 @@
-import { NextFunction, Request, Response } from 'express';
 import { logger } from '@/lib/logger';
+import { NextFunction, Request, Response } from 'express';
 
 export const loggerMiddleware = (req: Request, res: Response, next: NextFunction) => {
   const url = req.url
@@ -12,7 +12,7 @@ export const loggerMiddleware = (req: Request, res: Response, next: NextFunction
     }
   });
   
-  res.on('close', ()=>{
+  res.on('close', () => {
     logger.log({
       level: 'info',
       message: `[HTTP Response] ${req.method} ${url} ${res.statusCode}`,

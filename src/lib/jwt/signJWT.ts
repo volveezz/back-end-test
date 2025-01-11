@@ -1,12 +1,12 @@
-import { config } from '@/config'
-import jwt from 'jsonwebtoken'
+import { config } from '@/config';
+import jwt from 'jsonwebtoken';
 
 type Props = {
   id?: string;
   enterpriseId?: string;
   expiresIn?: number | string;
 }
-export const signJWT = ({ id, enterpriseId, expiresIn }: Props): string | never =>{
+export const signJWT = ({ id, enterpriseId, expiresIn }: Props): string | never => {
   const secret = config.jwt.secret
   const options: Record<string, any> = {}
   
