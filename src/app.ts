@@ -29,13 +29,7 @@ const entry = async () => {
     log('Server starting...');
   }
   
-  const db = client.prismaClient.newClient({
-    user: cfg.postgres.user,
-    password: cfg.postgres.password,
-    host: cfg.postgres.host,
-    port: cfg.postgres.port,
-    db: cfg.postgres.db
-  });
+  const db = client.prismaClient.newClient();
 
   const example = await client.example.newClient({
     message: config.example.message

@@ -4,7 +4,7 @@ export const newClient = () => {
   const client = new PrismaClient({
     datasources: {
       db: {
-        url: `postgresql://${config.user}:${config.password}@${config.host}:${config.port}/${config.db}?connection_limit=10`,
+        url: `${process.env.POSTGRES_URL}?connection_limit=10`,
       },
     },
   })
