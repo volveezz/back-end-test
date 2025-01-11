@@ -7,7 +7,7 @@ export type Register = (req: Request, res: Response) => Promise<Response>;
 export const buildRegister = ({ auth }: Params): Register => {
   return async (req, res) => {
     const data = await auth.register({
-      email: req.body.email?.toLowerCase(),
+      email: req.body.email.toLowerCase(),
       password: req.body.password,
     });
 

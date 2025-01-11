@@ -23,7 +23,7 @@ const buildRegisterRoutes = (methods: AuthMethods) => {
 
     /**
      * @openapi
-     * /auth/signin:
+     * /auth/authorize:
      *   post:
      *     tags: [Auth]
      *     produces:
@@ -50,14 +50,14 @@ const buildRegisterRoutes = (methods: AuthMethods) => {
      *                      type: string
      */
     namespace.post(
-      '/signin',
+      '/authorize',
       authorizationRules,
       createRouteHandler(methods.authorize)
     )
 
     /**
      * @openapi
-     * /auth/signup:
+     * /auth/register:
      *   post:
      *     tags: [Auth]
      *     produces:
@@ -80,7 +80,7 @@ const buildRegisterRoutes = (methods: AuthMethods) => {
      *                      $ref: '#/components/entities/User'
      */
     namespace.post(
-      '/signup',
+      '/register',
       authorizationRules,
       createRouteHandler(methods.register)
     )

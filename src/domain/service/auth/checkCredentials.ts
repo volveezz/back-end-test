@@ -14,9 +14,6 @@ export const buildCheckCredentials = ({ userRepository }: Adapter): CheckCredent
         email: {
           mode: 'insensitive',
           equals: email
-        },
-        password: {
-          not: null
         }
       },
       select: {
@@ -31,7 +28,7 @@ export const buildCheckCredentials = ({ userRepository }: Adapter): CheckCredent
       return null
     }
 
-    const passwordsSame = await bcrypt.compare(password, user?.password)
+    const passwordsSame = await bcrypt.compare(password, user.password)
 
     if (!passwordsSame) {
       return null
