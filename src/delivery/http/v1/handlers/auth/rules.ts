@@ -1,5 +1,5 @@
-import { check, header } from 'express-validator'
-import { authRequired, validateSchema } from '../../middlewares'
+import { check, header } from 'express-validator';
+import { authRequired, validateSchema } from '../../middlewares';
 
 /**
   * @openapi
@@ -15,11 +15,7 @@ import { authRequired, validateSchema } from '../../middlewares'
   *             password:
   *                type: string
   */
-export const authorizationRules = [
-  check('email').exists().isEmail(),
-  check('password').exists().notEmpty().isString(),
-  validateSchema
-];
+export const authorizationRules = [check('email').exists().isEmail(), check('password').exists().notEmpty().isString(), validateSchema];
 
 /**
   * @openapi
@@ -32,13 +28,6 @@ export const authorizationRules = [
   *             refreshToken:
   *                type: string
   */
-export const refreshRules = [
-  check('refreshToken').exists().notEmpty().isString(),
-  validateSchema
-];
+export const refreshRules = [check('refreshToken').exists().notEmpty().isString(), validateSchema];
 
-export const getMeRules = [
-  header('authorization').exists().notEmpty().isString(),
-  authRequired({}),
-  validateSchema
-];
+export const getMeRules = [header('authorization').exists().notEmpty().isString(), authRequired({}), validateSchema];

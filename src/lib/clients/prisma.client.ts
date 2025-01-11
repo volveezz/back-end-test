@@ -1,12 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 
-export const newClient = (config: {
-  user: string;
-  password: string;
-  port: number;
-  host: string;
-  db: string;
-}) => {
+export const newClient = () => {
   const client = new PrismaClient({
     datasources: {
       db: {

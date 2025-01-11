@@ -12,8 +12,8 @@ export type Refresh = (data: {
   refreshToken: string
 } | never>
 
-export const buildRefresh = ({service, adapter }: UseCaseParams): Refresh=>{
-  return async ({refreshToken})=>{
+export const buildRefresh = ({ service, adapter }: UseCaseParams): Refresh=>{
+  return async ({ refreshToken })=>{
     const user = verifyJWT(refreshToken) as JwtPayload
 
     if (!user || !user.id) {
@@ -40,7 +40,7 @@ export const buildRefresh = ({service, adapter }: UseCaseParams): Refresh=>{
       });
     }
 
-    const {accessToken, refreshToken: newRT} = await service.auth.signAuthTokens({
+    const { accessToken, refreshToken: newRT } = await service.auth.signAuthTokens({
       user: {
         id: user.id
       } as IUser

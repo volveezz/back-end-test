@@ -1,4 +1,4 @@
-import {IUser} from '@/domain/entity/user';
+import { IUser } from '@/domain/entity/user';
 import { UnauthorizedError } from '@/domain/errors';
 import { UseCaseParams } from '../types';
 
@@ -15,7 +15,7 @@ export const buildAuthorize = ({
   service,
   adapter
 }: UseCaseParams): Authorize => {
-  return async ({email, password}) => {
+  return async ({ email, password }) => {
     
     let user = await service.auth.checkCredentials({
       email,
@@ -42,7 +42,7 @@ export const buildAuthorize = ({
       throw new UnauthorizedError()
     }
 
-    const {refreshToken, accessToken} = await service.auth.signAuthTokens({
+    const { refreshToken, accessToken } = await service.auth.signAuthTokens({
       user
     })
 

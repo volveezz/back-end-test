@@ -1,7 +1,7 @@
-import Express from 'express';
 import cors from 'cors';
-import { buildSwagger } from '../swagger';
+import Express from 'express';
 import { errorHandler, loggerMiddleware } from '../middlewares';
+import { buildSwagger } from '../swagger';
 
 export const buildRouter = (handler: Express.Router) => {
   const router = Express.Router();

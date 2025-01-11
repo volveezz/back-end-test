@@ -1,4 +1,4 @@
-import {NextFunction, Response, Request} from 'express';
+import { NextFunction, Request, Response } from 'express';
 
 export const createRouteHandler = (handler: any)=>{
   return async (req: Request, res: Response, next: NextFunction)=>{

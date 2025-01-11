@@ -1,15 +1,15 @@
-import * as client from './lib/clients';
-import {config as cfg, config, devMode} from '@/config';
 import * as adapter from '@/adapter';
-import * as usecase from '@/domain/usecase';
-import * as service from '@/domain/service';
+import { config as cfg, config, devMode } from '@/config';
 import * as server from '@/delivery/http/server';
 import * as httpHandler from '@/delivery/http/v1/handlers';
 import { buildRouter } from '@/delivery/http/v1/router';
+import * as service from '@/domain/service';
+import * as usecase from '@/domain/usecase';
+import chalk from 'chalk';
 import cluster from 'node:cluster';
 import os from 'node:os';
+import * as client from './lib/clients';
 import { log, logger } from './lib/logger';
-import chalk from 'chalk';
 
 process.on('uncaughtException', function(err) { 
   logger.log({

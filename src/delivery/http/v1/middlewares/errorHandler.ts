@@ -1,5 +1,5 @@
 import Express from 'express';
-import {logger} from '@/lib/logger';
+import { logger } from '@/lib/logger';
 import { HttpError } from '../errors';
 
 export const errorHandler: Express.ErrorRequestHandler = (error, req, res, next) => {

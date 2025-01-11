@@ -1,5 +1,5 @@
-import { UseCaseParams } from '../types';
 import { config } from '@/config';
+import { UseCaseParams } from '../types';
 
 type Params = UseCaseParams;
 

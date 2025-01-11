@@ -1,5 +1,5 @@
-import {NextFunction, Response, Request} from 'express';
-import {validationResult} from 'express-validator';
+import { NextFunction, Response, Request } from 'express';
+import { validationResult } from 'express-validator';
 
 export const validateSchema = (req: Request, res: Response, next: NextFunction)=>{
   const errors = validationResult(req);

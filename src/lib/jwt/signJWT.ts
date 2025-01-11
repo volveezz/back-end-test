@@ -6,7 +6,7 @@ type Props = {
   enterpriseId?: string;
   expiresIn?: number | string;
 }
-export const signJWT = ({id, enterpriseId, expiresIn}: Props): string | never =>{
+export const signJWT = ({ id, enterpriseId, expiresIn }: Props): string | never =>{
   const secret = config.jwt.secret
   const options: Record<string, any> = {}
   
