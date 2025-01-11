@@ -1,14 +1,14 @@
-import {IUser} from '@/domain/entity/user';
-import * as bcrypt from 'bcrypt';
+import { IUser } from '@/domain/entity/user';
 import { Adapter } from '@/domain/types';
+import * as bcrypt from 'bcrypt';
 
 export type CheckCredentials = (data: {
   email: string,
   password: string,
 }) => Promise<IUser | null | never>;
 
-export const buildCheckCredentials = ({userRepository}: Adapter): CheckCredentials => {
-  return async ({email, password}) => {
+export const buildCheckCredentials = ({ userRepository }: Adapter): CheckCredentials => {
+  return async ({ email, password }) => {
     const user = await userRepository.get({
       where: {
         email: {

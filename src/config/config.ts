@@ -1,6 +1,6 @@
-import path from 'path'
-import fs from 'fs'
-import YAML from 'yaml'
+import fs from 'fs';
+import path from 'path';
+import YAML from 'yaml';
 import { z } from 'zod';
 
 const configSchema = z.object({

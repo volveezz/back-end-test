@@ -5,7 +5,7 @@ type Params = Pick<DeliveryParams, 'auth'>
 
 export type Authorize = (req: Request, res: Response)=>Promise<Response>
 
-export const buildAuthorize = ({auth}: Params): Authorize=>{
+export const buildAuthorize = ({ auth }: Params): Authorize=>{
   return async (req, res)=>{
     const data = await auth.authorize({
       email: req.body.email?.toLowerCase(),

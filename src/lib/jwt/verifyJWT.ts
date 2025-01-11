@@ -1,4 +1,4 @@
-import jwt, {JwtPayload} from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 import { config } from '@/config';
 
 export const verifyJWT = (token: string): JwtPayload | string => {

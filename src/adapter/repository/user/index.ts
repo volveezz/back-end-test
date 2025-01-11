@@ -1,10 +1,10 @@
 import { AdapterParams } from '@/adapter/types';
 import { buildCount, Count } from './count';
+import { buildCreate, Create } from './create';
 import { buildDelete, Delete } from './delete';
+import { buildGet, Get } from './get';
+import { buildList, List } from './list';
 import { buildUpdate, Update } from './update';
-import { List, buildList } from './list';
-import { buildCreate, Create} from './create'
-import { buildGet, Get} from './get'
 
 type Params = Pick<AdapterParams, 'db'>
 

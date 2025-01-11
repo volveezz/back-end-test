@@ -1,4 +1,4 @@
-import {NextFunction, Response, Request} from 'express';
+import { NextFunction, Response, Request } from 'express';
 import httpStatus from 'http-status';
 import ipaddr from 'ipaddr.js';
 
