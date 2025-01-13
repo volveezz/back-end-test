@@ -1,4 +1,4 @@
-import { check, query } from 'express-validator';
+import { check, param, query } from 'express-validator';
 import { authRequired, validateSchema } from '../../middlewares';
 import { validateIdParam } from '../../middlewares/idRequired';
 
@@ -104,7 +104,7 @@ export const postCreateRules = [
  *           description: ID of the feedback post to delete.
  */
 export const postDeleteRules = [
-  check('id').exists().withMessage('Feedback post ID is required').isUUID().withMessage('Invalid feedback post ID format'),
+  param('id').exists().withMessage('Feedback post ID is required').isUUID().withMessage('Invalid feedback post ID format'),
   authRequired({}),
   validateIdParam(),
   validateSchema,
@@ -136,6 +136,7 @@ export const postDeleteRules = [
  *           enum: [idea, planned, in_progress, completed, closed]
  */
 export const postEditRules = [
+  param('id').exists().withMessage('Feedback post ID is required').isUUID().withMessage('Invalid feedback post ID format'),
   check('title').optional().isString(),
   check('category')
     .optional()
@@ -174,6 +175,7 @@ export const postEditRules = [
  *           enum: [upvote, unvote]
  */
 export const postVoteRules = [
+  param('id').exists().withMessage('Feedback post ID is required').isUUID().withMessage('Invalid feedback post ID format'),
   check('action')
     .exists().withMessage('Action is required')
     .isString()
