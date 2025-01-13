@@ -126,8 +126,8 @@ const buildFeedbackPostRoutes = (methods: FeedbackPostMethods) => {
 		 *     responses:
 		 *       204:
 		 *         description: Feedback post was deleted.
-		 *       500:
-		 *         description: Feedback post wasn't found.
+		 *       404:
+		 *         description: Feedback post not found.
 		 */
     namespace.delete('/:id', postDeleteRules, createRouteHandler(methods.delete));
 
@@ -155,6 +155,8 @@ const buildFeedbackPostRoutes = (methods: FeedbackPostMethods) => {
 		 *         description: Feedback post was edited.
 		 *       401:
 		 *         description: User is not authorized to edit the feedback post.
+     *       404:
+		 *         description: Feedback post not found.
 		 */
     namespace.patch('/:id', postEditRules, createRouteHandler(methods.edit));
 
