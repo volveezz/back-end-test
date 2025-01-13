@@ -7,4 +7,13 @@ services:
       env_file:
          - .env
       volumes:
-         - ./pg_data:/var/lib/postgresql/data/pgdata
+         - ./pg_data:/var/lib/postgresql-dev/data/pgdata
+   db_prod:
+      image: postgres:17
+      restart: always
+      ports:
+         - 127.0.0.1:5432:5432
+      env_file:
+         - .env
+      volumes:
+         - ./pg_data:/var/lib/postgresql-prod/data/pgdata

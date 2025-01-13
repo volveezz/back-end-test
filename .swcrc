@@ -18,15 +18,21 @@
     "loose": false,
     "externalHelpers": false,
     "keepClassNames": false,
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "@/*": ["./src/*"],
-      "@types": ["./src/types"]
+      "@/*": [
+        "./*"
+      ],
+      "@types": [
+        "./src/types"
+      ]
     }
   },
   "module": {
     "type": "commonjs"
   },
-  "exclude": [".*\\.d.ts$"],
+  "exclude": [
+    ".*\\.d.ts$"
+  ],
   "minify": false
 }
