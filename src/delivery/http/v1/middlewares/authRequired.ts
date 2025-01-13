@@ -5,34 +5,39 @@ import { JwtPayload } from 'jsonwebtoken';
 
 export const authRequired =
 	({ required = true } = {}): RequestHandler =>
-  async (req, res, next) => {
-    const token = req.headers.authorization?.split(' ')[1];
+	  async (req, res, next) => {
+	    // Get access token from cookies
+	    const token = req.headers.cookie
+	      ?.split(' ')
+	      .find((c) => c.startsWith('accessToken'))
+	      ?.split('=')[1];
+	    // const token = req.headers.authorization?.split(' ')[1];
 
-    if (required && !token) {
-      res.status(httpStatus.UNAUTHORIZED).json({
-        error: {
+	    if (required && !token) {
+	      res.status(httpStatus.UNAUTHORIZED).json({
+	        error: {
 	          message: 'UNAUTHORIZED',
 	        },
-      });
+	      });
 
-      return;
-    }
+	      return;
+	    }
 
 	    const tokenPayload = token ? (verifyJWT(token) as JwtPayload & { id: string }) : null;
 
-    if (required && !tokenPayload?.id) {
-      res.status(httpStatus.UNAUTHORIZED).json({
-        error: {
+	    if (required && !tokenPayload?.id) {
+	      res.status(httpStatus.UNAUTHORIZED).json({
+	        error: {
 	          message: 'UNAUTHORIZED',
 	        },
-      });
+	      });
 
-      return;
-    }
+	      return;
+	    }
 
-    // @ts-ignore
-    req.user = {
+	    // @ts-ignore
+	    req.user = {
 	      id: tokenPayload?.id,
-    };
-    next();
+	    };
+	    next();
 	  };

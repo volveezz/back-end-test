@@ -13,6 +13,7 @@ model User {
   password   String
   avatar     String?
   posts      FeedbackPost[]
+  upvotes    FeedbackPost[] @relation("PostUpvotes")
   created_at DateTime       @default(now())
 }
 
@@ -22,7 +23,7 @@ model FeedbackPost {
   description String
   category    FeedbackCategory
   status      FeedbackStatus
-  upvotes     Int              @default(0)
+  upvotes     User[]           @relation("PostUpvotes")
   author      User             @relation(fields: [author_id], references: [id])
   author_id   String
   created_at  DateTime         @default(now())
@@ -30,15 +31,15 @@ model FeedbackPost {
 }
 
 enum FeedbackCategory {
-  GENERAL
-  PERFORMANCE
-  BUG
+  general
+  performance
+  bug
 }
 
 enum FeedbackStatus {
-  IDEA
-  PLANNED
-  IN_PROGRESS
-  COMPLETED
-  CLOSED
+  idea
+  planned
+  in_progress
+  completed
+  closed
 }

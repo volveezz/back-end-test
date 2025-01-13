@@ -9,6 +9,6 @@ export const buildExampleGateway = (params: AdapterParams): ExampleGateway => {
   const example = buildExample(params);
 
   return {
-    example
+    example,
   };
 };

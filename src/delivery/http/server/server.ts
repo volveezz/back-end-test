@@ -1,4 +1,5 @@
 import { config } from '@/config/index';
+import cookieParser from 'cookie-parser';
 import Express from 'express';
 
 const buildStart = (app: Express.Express) => {
@@ -12,13 +13,15 @@ const buildStart = (app: Express.Express) => {
     };
 
     return stop;
-  }
-}
+  };
+};
 
 export const buildServer = () => {
   const app = Express();
 
+  app.use(cookieParser());
+
   return {
-    start: buildStart(app)
+    start: buildStart(app),
   };
-}
+};

@@ -1,0 +1,137 @@
+import { check } from 'express-validator';
+import { authRequired, validateSchema } from '../../middlewares';
+import { validateIdParam } from '../../middlewares/idRequired';
+
+/**
+ * @openapi
+ * components:
+ *   rules:
+ *     postCreate:
+ *       required:
+ *         - title
+ *         - category
+ *         - status
+ *       properties:
+ *         title:
+ *           type: string
+ *         description:
+ *           type: string
+ *         category:
+ *           type: string
+ *           enum: [general, performance, bug]
+ *         status:
+ *           type: string
+ *           enum: [idea, planned, in_progress, completed, closed]
+ */
+export const postCreateRules = [
+  check('title').exists().withMessage('Title is required').isString(),
+  check('category')
+    .exists().withMessage('Category is required')
+    .isString().toLowerCase()
+    .isIn(['general', 'performance', 'bug'])
+    .withMessage('Invalid category. Must be "general", "performance", or "bug"'),
+  check('status')
+    .exists().withMessage('Status is required')
+    .isString().toLowerCase()
+    .isIn(['idea', 'planned', 'in_progress', 'completed', 'closed'])
+    .withMessage('Invalid status. Must be "idea", "planned", "in_progress", "completed", or "closed"'),
+  check('description').optional().isString(),
+  authRequired({}),
+  validateSchema,
+];
+
+/**
+ * @openapi
+ * components:
+ *   rules:
+ *     postDelete:
+ *       parameters:
+ *         - in: path
+ *           name: id
+ *           schema:
+ *             type: string
+ *             format: uuid
+ *           required: true
+ *           description: ID of the feedback post to delete.
+ */
+export const postDeleteRules = [
+  check('id').exists().withMessage('Feedback post ID is required').isUUID().withMessage('Invalid feedback post ID format'),
+  authRequired({}),
+  validateIdParam(),
+  validateSchema,
+];
+
+/**
+ * @openapi
+ * components:
+ *   rules:
+ *     postEdit:
+ *       parameters:
+ *         - in: path
+ *           name: id
+ *           schema:
+ *             type: string
+ *             format: uuid
+ *           required: true
+ *           description: ID of the feedback post to edit.
+ *       properties:
+ *         title:
+ *           type: string
+ *         description:
+ *           type: string
+ *         category:
+ *           type: string
+ *           enum: [general, performance, bug]
+ *         status:
+ *           type: string
+ *           enum: [idea, planned, in_progress, completed, closed]
+ */
+export const postEditRules = [
+  check('title').optional().isString(),
+  check('category')
+    .optional()
+    .isString().toLowerCase()
+    .isIn(['general', 'performance', 'bug'])
+    .withMessage('Invalid category. Must be "general", "performance", or "bug"'),
+  check('status')
+    .optional()
+    .isString().toLowerCase()
+    .isIn(['idea', 'planned', 'in_progress', 'completed', 'closed'])
+    .withMessage('Invalid status. Must be "idea", "planned", "in_progress", "completed", or "closed"'),
+  check('description').optional().isString(),
+  authRequired({}),
+  validateIdParam(),
+  validateSchema,
+];
+
+/**
+ * @openapi
+ * components:
+ *   rules:
+ *     postVote:
+ *       required:
+ *         - action
+ *       parameters:
+ *         - in: path
+ *           name: id
+ *           schema:
+ *             type: string
+ *             format: uuid
+ *           required: true
+ *           description: ID of the feedback post to vote on.
+ *       properties:
+ *         action:
+ *           type: string
+ *           enum: [upvote, unvote]
+ */
+export const postVoteRules = [
+  check('action')
+    .exists().withMessage('Action is required')
+    .isString()
+    .isIn(['upvote', 'unvote'])
+    .withMessage('Invalid action. Must be "upvote" or "unvote"'),
+  authRequired({}),
+  validateIdParam(),
+  validateSchema,
+];
+

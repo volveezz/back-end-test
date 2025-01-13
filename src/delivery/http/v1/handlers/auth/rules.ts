@@ -30,4 +30,4 @@ export const authorizationRules = [check('email').exists().isEmail(), check('pas
   */
 export const refreshRules = [check('refreshToken').exists().notEmpty().isString(), validateSchema];
 
-export const getMeRules = [header('authorization').exists().notEmpty().isString(), authRequired({}), validateSchema];
+export const getMeRules = [authRequired({}), validateSchema];
