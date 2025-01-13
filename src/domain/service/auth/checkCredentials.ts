@@ -16,6 +16,7 @@ export const buildCheckCredentials = ({ userRepository }: Adapter): CheckCredent
       select: {
         id: true,
         email: true,
+        password: true,
         avatar: true,
         created_at: true,
       },
