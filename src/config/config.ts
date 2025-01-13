@@ -8,16 +8,6 @@ const configSchema = z.object({
     host: z.string(),
     port: z.number(),
   }),
-  postgres: z.object({
-    host: z.string(),
-    port: z.number(),
-    user: z.string(),
-    password: z.string(),
-    db: z.string(),
-  }),
-  jwt: z.object({
-    secret: z.string(),
-  }),
   example: z.object({
     message: z.string(),
   }),
