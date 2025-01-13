@@ -6,23 +6,23 @@ import { buildGet, Get } from './get';
 import { buildList, List } from './list';
 import { buildUpdate, Update } from './update';
 
-type Params = Pick<AdapterParams, 'db'>
+type Params = Pick<AdapterParams, 'db'>;
 
 export type UserRepository = {
-  count: Count,
-  create: Create,
-  delete: Delete,
-  get: Get,
-  list: List,
-  update: Update,
-}
+  count: Count;
+  create: Create;
+  delete: Delete;
+  get: Get;
+  list: List;
+  update: Update;
+};
 export const buildUserRepository = (params: Params): UserRepository => {
-  const count = buildCount(params)
-  const create = buildCreate(params)
-  const deleteUser = buildDelete(params)
-  const get = buildGet(params)
-  const list = buildList(params)
-  const update = buildUpdate(params)
+  const count = buildCount(params);
+  const create = buildCreate(params);
+  const deleteUser = buildDelete(params);
+  const get = buildGet(params);
+  const list = buildList(params);
+  const update = buildUpdate(params);
 
   return {
     count,
@@ -31,5 +31,5 @@ export const buildUserRepository = (params: Params): UserRepository => {
     get,
     list,
     update,
-  }
-}
+  };
+};

@@ -19,21 +19,10 @@
     "allowUnreachableCode": false,
     "baseUrl": "src",
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@types": [
-        "./types"
-      ]
+      "@/*": ["./*"],
+      "@types": ["./types"]
     },
-    "types": [
-      "@types/node"
-    ]
+    "types": ["@types/node"]
   },
-  "include": [
-    "src/**/*",
-    "prisma/**/*",
-    "scripts/**/*",
-    "db/**/*"
-  ]
+  "include": ["src/**/*", "prisma/**/*", "scripts/**/*", "db/**/*"]
 }

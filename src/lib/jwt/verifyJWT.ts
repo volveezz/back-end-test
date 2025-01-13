@@ -3,11 +3,11 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 
 export const verifyJWT = (token: string): JwtPayload | string => {
   try {
-    const data = jwt.verify(token, config.jwt.secret)
-    return data
+    const data = jwt.verify(token, config.jwt.secret);
+    return data;
   } catch (_) {
     return {
-      id: null
-    }
+      id: null,
+    };
   }
-}
+};

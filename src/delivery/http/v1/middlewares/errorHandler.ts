@@ -7,17 +7,17 @@ export const errorHandler: Express.ErrorRequestHandler = (error, req, res, next)
     return next(error);
   }
 
-  const httpError = new HttpError(error)
+  const httpError = new HttpError(error);
 
   if (!httpError.isKnownError) {
     logger.log({
       level: 'error',
-      message: error.stack || 'No stack provided'
-    })
+      message: error.stack || 'No stack provided',
+    });
   }
 
   res.status(httpError.statusCode).json({
     status: 'error',
-    error: httpError.getError()
+    error: httpError.getError(),
   });
-}
+};

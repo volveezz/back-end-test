@@ -1,60 +1,62 @@
-type ErrorCreateParams = {message?: string, data?: object, code?: string, httpStatus?: number}
+type ErrorCreateParams = {
+	message?: string;
+	data?: object;
+	code?: string;
+	httpStatus?: number;
+};
 
 export class BaseError extends Error {
-  public readonly message: string
-  public readonly data?: object
-  public readonly code?: string
-  public readonly httpStatus?: number
+  public readonly message: string;
+  public readonly data?: object;
+  public readonly code?: string;
+  public readonly httpStatus?: number;
 
-  constructor({
-    message = '',
-    data,
-    code,
-    httpStatus
-  }: ErrorCreateParams = {
-    message: ''
-  }){
-    super(message)
-    this.message = message
-    this.data = data
-    this.code = code
-    this.httpStatus = httpStatus
+  constructor(
+    { message = '', data, code, httpStatus }: ErrorCreateParams = {
+      message: '',
+    }
+  ) {
+    super(message);
+    this.message = message;
+    this.data = data;
+    this.code = code;
+    this.httpStatus = httpStatus;
   }
 }
 
-export class NotFoundError extends BaseError{  
+export class NotFoundError extends BaseError {
   constructor(data?: ErrorCreateParams) {
-    super(data)
+    super(data);
   }
 }
 
-export class ForbiddenError extends BaseError{  
+export class ForbiddenError extends BaseError {
   constructor(data?: ErrorCreateParams) {
-    super(data)
+    super(data);
   }
 }
 
-export class UnauthorizedError extends BaseError{  
+export class UnauthorizedError extends BaseError {
   constructor(data?: ErrorCreateParams) {
-    super(data)
+    super(data);
   }
 }
 
-export class InvalidDataError extends BaseError{  
+export class InvalidDataError extends BaseError {
   constructor(data?: ErrorCreateParams) {
-    super(data)
+    super(data);
   }
 }
 
-export class InternalError extends BaseError{  
+export class InternalError extends BaseError {
   constructor(data?: ErrorCreateParams) {
-    super(data)
+    super(data);
   }
 }
 
-export class EntityTooLargeError extends BaseError{  
+export class EntityTooLargeError extends BaseError {
   constructor(data?: ErrorCreateParams) {
-    super(data)
+    super(data);
   }
 }
 
@@ -62,7 +64,7 @@ export class TooManyRequestsError extends BaseError {
   constructor(data?: ErrorCreateParams) {
     super({
       ...data,
-      httpStatus: 429
-    })
+      httpStatus: 429,
+    });
   }
 }

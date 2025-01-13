@@ -1,19 +1,19 @@
 import { ExampleClient } from './types';
 
 type Params = {
-  message: string;
+	message: string;
 };
 
 export const newClient = ({ message }: Params): { client: ExampleClient } => {
   const client: ExampleClient = {
     hello() {
       console.log(message);
-    }
+    },
   };
 
   return {
-    client
+    client,
   };
-}
+};
 
 export * from './types';

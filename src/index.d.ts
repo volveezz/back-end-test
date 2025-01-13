@@ -1,3 +1,3 @@
 declare module '*.json' {
-    export default string
+	export default string;
 }

@@ -7,13 +7,13 @@ export const allowedIps = (ips: Array<string>) => {
     const ip = req.header('x-real-ip') || req.header('x-forwarded-for') || req.ip;
     const current_ip = ipaddr.process(ip as string).toString();
 
-    if (!ips.includes(current_ip)){
+    if (!ips.includes(current_ip)) {
       return res.status(httpStatus.FORBIDDEN).json({
-        error:{
-          message: 'FORBIDDEN'
-        }
-      }) 
+        error: {
+          message: 'FORBIDDEN',
+        },
+      });
     }
-    next()
-  }
-}
+    next();
+  };
+};

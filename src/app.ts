@@ -11,11 +11,11 @@ import os from 'node:os';
 import * as client from './lib/clients';
 import { log, logger } from './lib/logger';
 
-process.on('uncaughtException', function(err) { 
+process.on('uncaughtException', function (err) {
   logger.log({
     level: 'error',
     message: err.message,
-    stack: err.stack
+    stack: err.stack,
   });
 });
 
@@ -28,23 +28,23 @@ const entry = async () => {
   if (cluster.isPrimary) {
     log('Server starting...');
   }
-  
+
   const db = client.prismaClient.newClient();
 
   const example = await client.example.newClient({
-    message: config.example.message
+    message: config.example.message,
   });
 
   const ad = adapter.buildAdapter({
     db,
-    example
+    example,
   });
 
   const svc = service.buildService(ad);
 
   const uc = usecase.buildUseCase({
     service: svc,
-    adapter: ad
+    adapter: ad,
   });
 
   if (cluster.isPrimary) {
@@ -54,7 +54,7 @@ const entry = async () => {
       for (let i = 0; i < workerCount; i++) {
         cluster.fork();
       }
-    
+
       cluster.on('exit', (worker) => {
         log(`Worker ${worker.process.pid} died.`);
       });
@@ -67,8 +67,10 @@ const entry = async () => {
 
     log(
       `Server started ${chalk.blue(`[Port: ${serverPort}]`)} ${devMode ? chalk.red('[Dev Mode]') : chalk.green('[Prod Mode]')}\n` +
-      `\tAPI URL: ${chalk.gray.underline(`http://${serverHost}:${serverPort}/api/v1`)}\n` +
-      `\tSwagger URL: ${chalk.gray.underline(`http://${serverHost}:${serverPort}/api/v1/swagger`)} (OpenAPI: ${chalk.gray.underline(`http://${serverHost}:${serverPort}/api/v1/swagger.json`)} )\n`
+				`\tAPI URL: ${chalk.gray.underline(`http://${serverHost}:${serverPort}/api/v1`)}\n` +
+				`\tSwagger URL: ${chalk.gray.underline(`http://${serverHost}:${serverPort}/api/v1/swagger`)} (OpenAPI: ${chalk.gray.underline(
+				  `http://${serverHost}:${serverPort}/api/v1/swagger.json`
+				)} )\n`
     );
 
     if (!devMode) {
@@ -102,6 +104,6 @@ const entry = async () => {
   process.on('SIGQUIT', sigListener);
   process.on('SIGTERM', sigListener);
   process.on('exit', stopListener);
-}
+};
 
 entry();

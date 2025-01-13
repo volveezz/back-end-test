@@ -1,3 +1,3 @@
 export type ExampleClient = {
-  hello: () => void;
+	hello: () => void;
 };

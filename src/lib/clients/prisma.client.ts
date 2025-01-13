@@ -7,17 +7,17 @@ export const newClient = () => {
         url: `${process.env.POSTGRES_URL}?connection_limit=10`,
       },
     },
-  })
+  });
 
   const getContextClient = (tx?: unknown) => {
     if (tx instanceof PrismaClient) {
-      return tx
+      return tx;
     }
-    return client
-  }
+    return client;
+  };
 
   return {
     client,
-    getContextClient
-  }
-}
+    getContextClient,
+  };
+};

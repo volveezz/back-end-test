@@ -1,3 +1,3 @@
 export interface IExample {
-  hello: string;
+	hello: string;
 }

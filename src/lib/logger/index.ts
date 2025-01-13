@@ -9,17 +9,11 @@ export const logger = winston.createLogger({
     new winston.transports.DailyRotateFile({
       filename: '%DATE%.log',
       dirname: 'logs',
-      maxFiles: '7d'
-    })
+      maxFiles: '7d',
+    }),
   ],
-  format: winston.format.combine(
-    winston.format.colorize(),
-    winston.format.simple()
-  )
+  format: winston.format.combine(winston.format.colorize(), winston.format.simple()),
 });
 
 // eslint-disable-next-line no-console
-export const log = (...params: any[]) => console.log(
-  chalk.blue.bold('[Test Server]'),
-  ...params
-);
+export const log = (...params: any[]) => console.log(chalk.blue.bold('[Test Server]'), ...params);
