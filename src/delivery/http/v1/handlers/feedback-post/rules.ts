@@ -1,6 +1,55 @@
-import { check } from 'express-validator';
+import { check, query } from 'express-validator';
 import { authRequired, validateSchema } from '../../middlewares';
 import { validateIdParam } from '../../middlewares/idRequired';
+
+/**
+ * @openapi
+ * components:
+ *   rules:
+ *     getPosts:
+ *       properties:
+ *         category:
+ *           type: string
+ *           enum: [general, performance, bug]
+ *           description: Filter by category
+ *         status:
+ *           type: string
+ *           enum: [idea, planned, in_progress, completed, closed]
+ *           description: Filter by status
+ *         sortBy:
+ *           type: string
+ *           enum: [votes, date]
+ *           description: Sort by votes or date
+ *         sortOrder:
+ *           type: string
+ *           enum: [asc, desc]
+ *           description: Sort order (ascending or descending)
+ */
+export const getFeedbackPostsRules = [
+  query('category')
+    .optional()
+    .isString().toLowerCase()
+    .isIn(['general', 'performance', 'bug'])
+    .withMessage('Invalid category. Must be "general", "performance", or "bug"'),
+  query('status')
+    .optional()
+    .isString().toLowerCase()
+    .isIn(['idea', 'planned', 'in_progress', 'completed', 'closed'])
+    .withMessage(
+      'Invalid status. Must be "idea", "planned", "in_progress", "completed", or "closed"',
+    ),
+  query('sortBy')
+    .optional()
+    .isString().toLowerCase()
+    .isIn(['votes', 'date'])
+    .withMessage('Invalid sortBy. Must be "votes" or "date"'),
+  query('sortOrder')
+    .optional()
+    .isString().toLowerCase()
+    .isIn(['asc', 'desc'])
+    .withMessage('Invalid sortOrder. Must be "asc" or "desc"'),
+  validateSchema,
+];
 
 /**
  * @openapi
