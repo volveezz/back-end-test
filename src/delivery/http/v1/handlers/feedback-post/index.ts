@@ -1,4 +1,5 @@
 import { DeliveryParams } from '@/delivery/types';
+import { FeedbackCategory, FeedbackStatus } from '@prisma/client';
 import Express from 'express';
 import { createRouteHandler } from '../../routeHandler';
 import { IHandler } from '../types';
@@ -127,6 +128,36 @@ const buildFeedbackPostRoutes = (methods: FeedbackPostMethods) => {
      *         description: Internal server error.
      */
     namespace.post('/:id/vote', postVoteRules, createRouteHandler(methods.vote));
+
+    /**
+     * @openapi
+     * /feedback-post/categories:
+     *   get:
+     *     tags:
+     *       - FeedbackPost
+     *     summary: Get all feedback categories
+     *     responses:
+     *       200:
+     *         description: A list of available feedback categories.
+     */
+    namespace.get('/categories', (req, res) => {
+      res.json(Object.values(FeedbackCategory)); 
+    });
+
+    /**
+     * @openapi
+     * /feedback-post/statuses:
+     *   get:
+     *     tags:
+     *       - FeedbackPost
+     *     summary: Get all feedback statuses
+     *     responses:
+     *       200:
+     *         description: A list of available feedback statuses.
+     */
+    namespace.get('/statuses', (req, res) => {
+      res.json(Object.values(FeedbackStatus));
+    });
 
     root.use('/feedback-post', namespace);
   };
