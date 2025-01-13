@@ -8,6 +8,9 @@ const configSchema = z.object({
     host: z.string(),
     port: z.number(),
   }),
+  jwt: z.object({
+    secret: z.string()
+  }),
   example: z.object({
     message: z.string(),
   }),
@@ -24,8 +27,15 @@ const parseConfig = (): Config => {
 
   const config: Config = YAML.parse(file);
 
-  const result = configSchema.safeParse(config);
+  let jwtSecretValue = process.env.JWT_SECRET;
+  // Look if JWT_SECRET was set up in .env and use back up if not
+  if (!jwtSecretValue) {
+    console.error('JWT_SECRET environment variable not found!');
+    jwtSecretValue = 'sNKJYCQSv0JZKy9lZwZOHG6HyyZCB7SidmIrwkDmQfJ8eQgd';
+  } 
+  config.jwt.secret = jwtSecretValue;
 
+  const result = configSchema.safeParse(config);
   if (!result.success) {
     throw new Error(JSON.stringify(result.error));
   }
