@@ -12,7 +12,7 @@
 ## Установка
 
 ```bash
-git clone [https://github.com/volveezz/back-end-test](https://github.com/volveezz/back-end-test)
+git clone https://github.com/volveezz/back-end-test
 cd back-end-test
 ```
 
